@@ -1,0 +1,20 @@
+const express = require('express');
+
+const { PORT } = require('./config/serverConfig.js');
+const ApiRoutes = require('./routes/index.js');
+
+async function setUpAndStartServer() {
+    //create express object
+    const app = express();
+
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+
+    app.use('/api', ApiRoutes);
+    
+    app.listen(PORT, () => {
+        console.log(`Server is running on PORT : ${PORT}`);
+    });
+}
+
+setUpAndStartServer();
