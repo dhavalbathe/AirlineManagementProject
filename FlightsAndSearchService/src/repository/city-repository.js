@@ -34,7 +34,7 @@ class CityRepository {
 
     async getCity(cityId) {
         try {
-            const city = await City.findOne({ where: { id: cityId}});
+            const city = await City.findOne({where: {id: cityId}});
             return city;
         } catch (error) {
             console.log("Something went wrong at Repository Layer");
