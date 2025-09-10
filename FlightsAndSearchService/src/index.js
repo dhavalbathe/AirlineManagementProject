@@ -2,7 +2,7 @@ const express = require('express');
 
 const { PORT } = require('./config/serverConfig.js');
 const ApiRoutes = require('./routes/index.js');
-const { City, Airport } = require('./models/index.js');
+const { City, Airport, Airplane } = require('./models/index.js');
 const db = require('./models/index.js');
 
 async function setUpAndStartServer() {
