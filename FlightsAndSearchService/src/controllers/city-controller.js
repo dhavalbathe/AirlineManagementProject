@@ -1,5 +1,5 @@
-const { noDoubleNestedGroup } = require('sequelize/lib/utils/deprecations');
 const { CityService } = require('../services/index.js');
+const { ServerErrorCodes, SuccessCodes } = require('../utils/error-codes.js');
 
 const cityService = new CityService();
 
@@ -16,7 +16,7 @@ const create = async(req, res) => {
         };
 
         const city = await cityService.createCity(flightRequestData);
-        return res.status(201).json({
+        return res.status(SuccessCodes.CREATED).json({
             data: city,
             success: true,
             message: "Successfully created a city",
@@ -76,7 +76,7 @@ const update = async(req, res) => {
 const get = async(req, res) => {
     try {
         const city = await cityService.getCity(req.params.id);
-        return res.status(200).json({
+        return res.status(SuccessCodes.OK).json({
             data: city,
             success: true,
             message: "Successfully read the city",
@@ -97,7 +97,7 @@ const getAll = async(req, res) => {
     try {
         console.log("req.params: ", req.query);
         const cities = await cityService.getAll(req.query);
-        res.status(200).json({
+        res.status(SuccessCodes.OK).json({
             data: cities,
             success: true,
             message: "Successfully fetches all the cities",
