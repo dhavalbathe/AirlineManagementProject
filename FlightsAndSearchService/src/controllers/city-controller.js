@@ -5,7 +5,17 @@ const cityService = new CityService();
 
 const create = async(req, res) => {
     try {
-        const city = await cityService.createCity(req.body);
+        const flightRequestData = {
+            flightNumber: req.body.flightNumber,
+            airplaneId: req.body.airplaneId,
+            departureAirportId: req.body.departureAirportId,
+            arrivalAirportId: req.body.arrivalAirportId,
+            arrivalTime: req.body.arrivalTime,
+            departureTime: req.body.departureTime,
+            price: req.body.price
+        };
+
+        const city = await cityService.createCity(flightRequestData);
         return res.status(201).json({
             data: city,
             success: true,
